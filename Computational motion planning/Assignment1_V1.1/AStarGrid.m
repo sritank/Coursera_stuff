@@ -110,7 +110,48 @@ while true
     % Visit all of the neighbors around the current node and update the
     % entries in the map, f, g and parent arrays
     %
+        % Visit each neighbor of the current node and update the map, distances
+    % and parent tables appropriately.
+    if(i~=nrows)
+%         if(map(i+1,j)~=2 && distanceFromStart(i+1,j)> min_dist+1)%distanceFromStart(current)+1)% && map(i+1,j)~=3)
+        if(map(i+1,j)~=2 && map(i+1,j)~=3 && map(i+1,j)~=5)% && distanceFromStart(i+1,j)> distanceFromStart(current)+1)% )
+            if(H(i+1,j)<f(i+1,j))
+                f(i+1,j)=H(i+1,j);%distanceFromStart(current)+1;
+                parent(i+1,j) = current;
+            end
+        end
+    end
+    if(i~=1)
+%         if(map(i-1,j)~=2 && distanceFromStart(i-1,j)> min_dist+1)%distanceFromStart(current)+1)% && map(i-1,j)~=3)
+        if(map(i-1,j)~=2 && map(i-1,j)~=3 && map(i-1,j)~=5)% && distanceFromStart(i-1,j)> distanceFromStart(current)+1)% )
+            if(H(i-1,j)<f(i-1,j))
+                f(i-1,j)=H(i-1,j);%distanceFromStart(current)+1;
+                parent(i-1,j) = current;
+            end
+        end
+    end
     
+    if(j~=ncols)
+%         if(map(i,j+1)~=2 && distanceFromStart(i,j+1)> min_dist+1)%distanceFromStart(current)+1)% && map(i,j+1)~=3)
+        if(map(i,j+1)~=2 && map(i,j+1)~=3 && map(i,j+1)~=5)% && distanceFromStart(i,j+1)> distanceFromStart(current)+1)% )
+            if(H(i,j+1)<f(i,j+1))
+                f(i,j+1)=H(i,j+1);%distanceFromStart(current)+1;
+                parent(i,j+1) = current;
+            end
+        end
+    end
+    
+    if(j~=1)
+%         if(map(i,j-1)~=2 && distanceFromStart(i,j-1)> min_dist+1)%distanceFromStart(current)+1)% && map(i,j-1)~=3)
+        if(map(i,j-1)~=2 && map(i,j-1)~=3 && map(i,j-1)~=5)%&& distanceFromStart(i,j-1)> distanceFromStart(current)+1)% )
+            if(f(i,j-1)>H(i,j-1))
+                f(i,j-1)=H(i,j-1);%distanceFromStart(current)+1;
+                parent(i,j-1) = current;
+            end
+        end
+    end
+    
+    numExpanded = numExpanded+1;
     
     
     
